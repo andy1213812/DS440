@@ -1,6 +1,6 @@
 import tweepy
 
-# Replace these with your credentials
+# Replace these with your credentials (These are Emi's credentials for x api)
 BEARER_TOKEN = "AAAAAAAAAAAAAAAAAAAAAAo2ygEAAAAA5QimShfUWGzon0ZbN4DwcnDFF7E%3DR4y52TOhLTUO882RDNCrhWJreS2jg03r2WjccdQ69ngmDWahGV"
 
 # Authenticate
