@@ -19,6 +19,13 @@ tweet_data = []
 if tweets.data:
     sentiment_analyzer = SentimentAnalyzer()  # Initialize sentiment analyzer
     for tweet in tweets.data:
-        print(f"{tweet.created_at}: {tweet.text}\n")
-else:
-    print("No tweets found.")
+        sentiment_score = sentiment_analyzer.analyze_sentiment(tweet.text)
+        tweet_data.append({
+            "timestamp": tweet.created_at,
+            "text": tweet.text,
+            "sentiment_score": sentiment_score
+        })
+
+# Convert to DataFrame for further analysis
+df = pd.DataFrame(tweet_data)
+print(df.head())
