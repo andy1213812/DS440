@@ -1,4 +1,6 @@
 import tweepy
+import pandas as pd
+from sentimentanalysis import SentimentAnalyzer
 
 # Replace these with your credentials
 BEARER_TOKEN = "AAAAAAAAAAAAAAAAAAAAAAo2ygEAAAAA5QimShfUWGzon0ZbN4DwcnDFF7E%3DR4y52TOhLTUO882RDNCrhWJreS2jg03r2WjccdQ69ngmDWahGV"
@@ -12,9 +14,18 @@ query = "Nike -is:retweet lang:en"
 # Fetch tweets
 tweets = client.search_recent_tweets(query=query, tweet_fields=["created_at", "text"], max_results=10)
 
-# Print tweets
+# Store tweets in a list
+tweet_data = []
 if tweets.data:
+    sentiment_analyzer = SentimentAnalyzer()  # Initialize sentiment analyzer
     for tweet in tweets.data:
-        print(f"{tweet.created_at}: {tweet.text}\n")
-else:
-    print("No tweets found.")
+        sentiment_score = sentiment_analyzer.analyze_sentiment(tweet.text)
+        tweet_data.append({
+            "timestamp": tweet.created_at,
+            "text": tweet.text,
+            "sentiment_score": sentiment_score
+        })
+
+# Convert to DataFrame for further analysis
+df = pd.DataFrame(tweet_data)
+print(df.head())
