@@ -1,0 +1,7 @@
+import Levenshtein
+
+original = "Artificial intelligence is rapidly changing the way we interact with technology."
+paraphrased = "AI is quickly transforming how we engage with technology."
+
+distance = Levenshtein.distance(original, paraphrased)
+similarity = Levenshtein.ratio(original, paraphrased)
